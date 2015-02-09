@@ -15,6 +15,7 @@ class StatusesController < ApplicationController
   # GET /statuses/new
   def new
     @status = Status.new
+    # @status = @user.statuses.new
   end
 
   # GET /statuses/1/edit
@@ -42,6 +43,7 @@ class StatusesController < ApplicationController
   def update
     respond_to do |format|
       if @status.update(status_params)
+
         format.html { redirect_to @status, notice: 'Status was successfully updated.' }
         format.json { head :no_content }
       else
@@ -62,13 +64,21 @@ class StatusesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_status
-      @status = Status.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_status
+    @status = Status.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def status_params
-      params.require(:status).permit(:name, :content)
-    end
+  # # Never trust parameters from the scary internet, only allow the white list through.
+  # def status_params
+  #   #params.require(:status).permit(:name, :content, :user_id, document_attributes:[:attachment, :remove_attachment] )  FIX IT
+  #
+  #   params.require(:status).permit(:name, :content,  document_attributes: [:user_id, :attachment, :remove_attachment] )
+  # end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def status_params
+    params.require(:status).permit(:user_id, :content, :user)
+  end
+
 end
