@@ -8,4 +8,8 @@ matt:
 #  password: "password"
 #  password_conformation: "password"
 
-
+olivia:
+  first_name: "Olivia"
+  last_name: "Moyer"
+  email: "olivia_m@yahoo.com"
+  profile_name: "oliviamoyer"
